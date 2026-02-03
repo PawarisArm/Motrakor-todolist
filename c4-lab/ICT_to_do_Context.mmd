@@ -1,0 +1,38 @@
+graph TB
+    Student["Student<br/>[User]"]
+    Instructor["Instructor<br/>[User]"]
+    Admin["System Administrator<br/>[User]"]
+    
+    subgraph System["ICT To Do List System"]
+        WebApp["Web App<br/>[React SPA]<br/>Browser-based user interface<br/>for task management"]
+        MobileApp["Mobile App<br/>[Flutter]<br/>Cross-platform mobile app<br/>for iOS and Android"]
+        WebAPI["Web API<br/>[Python FastAPI]<br/>REST API backend service<br/>for all client operations"]
+        Database["Database<br/>[PostgreSQL]<br/>Stores user profiles, tasks,<br/>sync settings, and history"]
+        MyCoursesCon["MyCourses Connector<br/>[Python Module]<br/>Integration module that syncs<br/>assignments and submissions"]
+    end
+    
+    MyCourses["MyCourses<br/>[External Software System]<br/>ICT e-learning platform<br/>with courses and assignments"]
+    
+    Student -->|Uses| WebApp
+    Student -->|Uses| MobileApp
+    Instructor -->|Uses| WebApp
+    Admin -->|Uses| WebApp
+    
+    WebApp -->|JSON over HTTPS| WebAPI
+    MobileApp -->|JSON over HTTPS| WebAPI
+    
+    WebAPI -->|SQL queries| Database
+    WebAPI -->|Calls| MyCoursesCon
+    
+    MyCoursesCon -->|JSON over HTTPS| MyCourses
+    
+    style Student fill:#08427b,stroke:#052e56,stroke-width:2px,color:#fff
+    style Instructor fill:#08427b,stroke:#052e56,stroke-width:2px,color:#fff
+    style Admin fill:#08427b,stroke:#052e56,stroke-width:2px,color:#fff
+    style System fill:#ffffff,stroke:#000000,stroke-width:2px
+    style WebApp fill:#438dd5,stroke:#3c7fc0,stroke-width:2px,color:#fff
+    style MobileApp fill:#438dd5,stroke:#3c7fc0,stroke-width:2px,color:#fff
+    style WebAPI fill:#438dd5,stroke:#3c7fc0,stroke-width:2px,color:#fff
+    style Database fill:#438dd5,stroke:#3c7fc0,stroke-width:2px,color:#fff
+    style MyCoursesCon fill:#438dd5,stroke:#3c7fc0,stroke-width:2px,color:#fff
+    style MyCourses fill:#999999,stroke:#555555,stroke-width:2px,color:#fff
